@@ -17,7 +17,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getUserDetails: (detail) => {
             dispatch(MapMidware.userDetail(detail))
+        },
+
+        userCoords: (userDataForLocation) => {
+            dispatch(MapMidware.getUserCoords(userDataForLocation))
         }
+
+
     }
 }
 
@@ -34,8 +40,6 @@ class ViewDetail extends Component {
         this.state = {
             joinCode: '',
             userDetail: [],
-
-
             newData: [],
             loading: false,
 
@@ -45,7 +49,6 @@ class ViewDetail extends Component {
     }
 
     componentWillMount() {
-
 
         this.setState({
             joinCode: this.props.navigation.state.params.joinKey,
@@ -97,43 +100,28 @@ class ViewDetail extends Component {
                         return (
                             <Card key={ind}
                             >
-                                {console.log(obj.userData.name)}
+                                {console.log(obj.name)}
                                 <CardItem style={{ backgroundColor: "#2E7D32" }}
                                 >
                                     <Left>
                                         <Text style={{ color: "white" }}>
-                                            {obj.userData.name}
+                                            {obj.name}
                                         </Text>
                                     </Left>
 
                                     <Body />
 
                                     <Right>
-
-                                        <Text note>{obj.userData.number}</Text>
-
+                                        <Text note>{obj.number}</Text>
                                     </Right>
-
-
                                 </CardItem>
                             </Card>
-
-
                         )
                     })
                 }
-
-
             </Content>
         )
     }
-
-
-
-
-
-
-
 
 
 
@@ -145,6 +133,18 @@ class ViewDetail extends Component {
                 console.log("friend invited")
             })
     }
+
+
+
+    userLocationCoords = () => {
+
+        let data = this.state.newData
+
+        this.props.userCoords(data)
+        // this.props.navigation.navigate("ViewMemberMapRoute", this.props.dataUserDetail)
+    }
+
+
 
 
 
@@ -173,6 +173,13 @@ class ViewDetail extends Component {
 
 
 
+                <Button onPress={this.userLocationCoords} style={{ margin: 20 }} transparent>
+
+                    <Text> View  </Text>
+
+                </Button>
+
+
                 <Button onPress={this.inviteMore} transparent>
 
                     <Text> Invite More  </Text>
@@ -181,6 +188,8 @@ class ViewDetail extends Component {
 
 
             </Container>
+
+
         )
     }
 }

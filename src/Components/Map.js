@@ -98,8 +98,7 @@ class MapComponent extends Component {
                 <Header>
                     <Left>
                         <Button transparent
-                            onPress={() => { this.props.navigation.navigate('DrawerOpen') }}
-                        >
+                            onPress={() => { this.props.navigation.navigate('DrawerOpen') }}>
                             <Icon name='menu' />
                         </Button>
                     </Left>
@@ -108,8 +107,6 @@ class MapComponent extends Component {
                     </Body>
                     <Right />
                 </Header>
-
-
 
                 <Container>
                     <MapView
@@ -127,17 +124,13 @@ class MapComponent extends Component {
                         showsUserLocation
                         showsCompass
                         showsMyLocationButton
-                        toolbarEnabled
-                    >
+                        toolbarEnabled>
                         <MapView.Marker
                             coordinate={{
                                 latitude: this.state.latitude,
                                 longitude: this.state.longitude
                             }}
-                            title="My Location"
-                            description= "sabih"
-
-                        >
+                            title="My Location">
                         </MapView.Marker>
                     </MapView>
                 </Container>

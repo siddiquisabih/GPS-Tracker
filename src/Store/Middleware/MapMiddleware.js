@@ -31,7 +31,7 @@ class MapMidware {
                         uid = responce
                         console.log("uid ", uid)
                         //store longitude and latitude to user data base
-                        const db = firebase.database().ref(`Users/${uid}/userData`).child("Location")
+                        const db = firebase.database().ref(`Users/${uid}`).child("Location")
                         // const locationUser = {
                         //     longLat
                         // }
@@ -238,6 +238,45 @@ class MapMidware {
                 })
         }
     }
+
+
+
+
+    static getUserCoords(data) {
+        return (dispatch) => {
+
+
+
+            console.log(data, "is mai say coords nikalny hain")
+
+
+            let arr = []
+            data.map((obj) => {
+                console.log(obj.Location)
+                arr.push(obj.userData)
+            })
+
+            console.log(arr)
+
+
+
+
+
+
+            // dispatch(MapAction.userCoords())
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     static userClearState() {
         return (dispatch) => {

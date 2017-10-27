@@ -7,6 +7,8 @@ import Login from "../../src/Components/Authentication/Login"
 import Signup from "../../src/Components/Authentication/Signup"
 import ViewDetail from "../../src/Components/ViewDetail"
 
+import ViewMemberMap from "../../src/Components/ViewMember"
+
 
 const MainRoute = StackNavigator({
     SplashRoute: {
@@ -31,6 +33,11 @@ const MainRoute = StackNavigator({
     ViewDetailRoute: {
         screen: ViewDetail
     },
+
+    ViewMemberMapRoute: {
+        screen: ViewMemberMap
+    },
+
 
 
 })

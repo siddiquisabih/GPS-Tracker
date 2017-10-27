@@ -24,6 +24,9 @@ class MapAction {
     static invalidKey = "invalidKey"
 
 
+    static userCoordsForMap = "userCoordsForMap"
+
+
 
 
 
@@ -104,9 +107,17 @@ class MapAction {
     }
 
 
-    static userInvalidKey (){
+    static userInvalidKey() {
         return {
-            type : MapAction.invalidKey
+            type: MapAction.invalidKey
+        }
+    }
+
+
+    static userCoords(value) {
+        return {
+            type: MapAction.userCoordsForMap,
+            data: value
         }
     }
 

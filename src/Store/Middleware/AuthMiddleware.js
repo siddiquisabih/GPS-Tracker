@@ -28,11 +28,11 @@ class Midware {
 
                     const databas = firebase.database().ref(`Users/${uid}`)
 
-                    const userDetails = {
-                        userData
-                    }
+                    // const userDetails = {
+                    //     userData
+                    // }
 
-                    databas.set(userDetails)
+                    databas.set(userData)
                 })
 
                 .catch((err) => {

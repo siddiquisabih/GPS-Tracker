@@ -29,6 +29,13 @@ const initialState = {
 
 
 
+    userCoords: false,
+    userCoordsData: [],
+
+
+
+
+
 
 
 
@@ -72,6 +79,13 @@ function MapReducer(state = initialState, action) {
 
         case MapAction.invalidKey:
             return Object.assign({}, state, { invalidCode: true, userJoinGroup: false, userJoinGroupError: false })
+
+
+        case MapAction.userCoordsForMap:
+            return Object.assign({}, state, { userCoords: true, userCoordsData: action.data })
+
+
+
 
         default:
             return state;
