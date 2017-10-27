@@ -62,7 +62,7 @@ function MapReducer(state = initialState, action) {
             return Object.assign({}, state, { getGroups: true, getGroupsData: action.data })
 
         case MapAction.groupError:
-            return Object.assign({}, state, { errorGroup: false })
+            return Object.assign({}, state, { errorGroup: true })
 
         case MapAction.userDetail:
             return Object.assign({}, state, { getUserDetail: true, userDetailData: action.data })
@@ -75,7 +75,11 @@ function MapReducer(state = initialState, action) {
 
 
         case MapAction.clearState:
-            return Object.assign({}, state, { createCircle: false, createCircleError: false, userJoinGroup: false, userJoinGroupError: false, invalidCode: false })
+            return Object.assign({}, state, {
+                createCircle: false, createCircleError: false,
+                userJoinGroup: false, userJoinGroupError: false,
+                invalidCode: false, errorGroup: false, getGroups: false, getGroupsData: []
+            })
 
         case MapAction.invalidKey:
             return Object.assign({}, state, { invalidCode: true, userJoinGroup: false, userJoinGroupError: false })

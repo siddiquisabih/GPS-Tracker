@@ -20,6 +20,10 @@ function mapDispatchToProps(dispatch) {
     return {
         groups: () => {
             dispatch(MapMidware.getGroups())
+        },
+
+        clearState: () => {
+            dispatch(MapMidware.userClearState())
         }
     }
 }
@@ -35,6 +39,7 @@ class Groups extends Component {
         this.state = {
             groups: [],
             loading: false,
+            error: false,
 
         };
     }
@@ -55,7 +60,7 @@ class Groups extends Component {
     componentWillMount() {
         this.props.groups()
         // setTimeout(()=>{console.log(this.state.groups)},2000)
-        this.setState({ loading: true })
+        this.setState({ loading: true, error: false })
 
     }
 
@@ -66,7 +71,7 @@ class Groups extends Component {
         // }
 
         if (prop.error) {
-            this.setState({ loading: false })
+            this.setState({ loading: false, error: true })
         }
 
 
@@ -76,8 +81,12 @@ class Groups extends Component {
             this.state.groups = prop.groupData
             // console.log(this.state.groups)
         }
+    }
 
 
+    componentWillUnmount() {
+        console.log("unmount")
+        this.props.clearState()
     }
 
 
@@ -114,26 +123,19 @@ class Groups extends Component {
                                     </Right>
                                 </CardItem>
                             </Card>
-
-
-
-
                         )
                     })
                 }
-
-
-
-
-
-
-
             </Content>
-
-
         )
+    }
 
 
+
+    handleError() {
+        if (this.state.error) {
+            return <Text>No Group Found</Text>
+        }
     }
 
 
@@ -166,6 +168,10 @@ class Groups extends Component {
 
                 </Container>
 
+                <Container style={{ justifyContent: "center", alignItems: "center" }}>
+
+                    {this.handleError()}
+                </Container>
 
 
 

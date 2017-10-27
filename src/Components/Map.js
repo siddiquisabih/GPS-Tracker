@@ -3,7 +3,7 @@ import { Container, Button, Text, Header, Content, List, ListItem, Left, Icon, T
 import MapView from "react-native-maps"
 import MapMidware from "../Store/Middleware/MapMiddleware"
 import { connect } from "react-redux"
-import { Image } from "react-native"
+import { Image, Dimensions } from "react-native"
 
 function mapStateToProps(state) {
     return {
@@ -23,6 +23,8 @@ function mapDispatchToProps(dispatch) {
         },
     }
 }
+
+
 
 class MapComponent extends Component {
     constructor() {

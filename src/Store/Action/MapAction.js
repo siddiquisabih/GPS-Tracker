@@ -24,6 +24,7 @@ class MapAction {
     static invalidKey = "invalidKey"
 
 
+
     static userCoordsForMap = "userCoordsForMap"
 
 

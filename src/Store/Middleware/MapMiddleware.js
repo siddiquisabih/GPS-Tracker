@@ -125,12 +125,21 @@ class MapMidware {
                 })
 
 
-                //if founded then dispatch groups 
-                dispatch(MapAction.userAllGroups(abc))
+
+                //if founded then dispatch groups
+                if (abc[0] !== undefined) {
+                    dispatch(MapAction.userAllGroups(abc))
+                }
+
+                else {
+
+                    dispatch(MapAction.userGroupError())
+                }
+
+
             })
 
 
-            dispatch(MapAction.userGroupError())
         }
     }
 
@@ -211,12 +220,6 @@ class MapMidware {
                         dispatch(MapAction.UserJoinGroup())
                     }
 
-
-
-
-
-
-
                 })
         }
     }
@@ -252,35 +255,20 @@ class MapMidware {
 
             let arr = []
             data.map((obj) => {
-                console.log(obj.Location)
-                arr.push(obj.userData)
+                console.log(obj)
+                arr.push({ location: obj.Location, name: obj.name, email: obj.email, address: obj.address, number: obj.number })
             })
 
             console.log(arr)
 
 
-
-
-
-
-            // dispatch(MapAction.userCoords())
-
+            dispatch(MapAction.userCoords(arr))
         }
     }
 
 
-
-
-
-
-
-
-
-
-
     static userClearState() {
         return (dispatch) => {
-
             dispatch(MapAction.joinGroupAndCreateCircleClearState())
         }
     }

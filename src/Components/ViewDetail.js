@@ -31,7 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 class ViewDetail extends Component {
 
     static navigationOptions = {
-        title: "Groups",
         header: false
     }
 
@@ -42,9 +41,6 @@ class ViewDetail extends Component {
             userDetail: [],
             newData: [],
             loading: false,
-
-
-
         };
     }
 
@@ -52,8 +48,10 @@ class ViewDetail extends Component {
 
         this.setState({
             joinCode: this.props.navigation.state.params.joinKey,
-            userDetail: this.props.navigation.state.params.userDetail
+            userDetail: this.props.navigation.state.params.userDetail,
+            loading: true
         })
+
 
         setTimeout(() => {
             this.props.getUserDetails(this.state.userDetail)
@@ -74,14 +72,13 @@ class ViewDetail extends Component {
 
         if (prop.dataUserDetail[0] !== undefined) {
             console.log(prop.dataUserDetail)
-            this.setState({ newData: prop.dataUserDetail })
+            this.setState({ newData: prop.dataUserDetail, loading: false })
 
             // this.state.newData = prop.dataUserDetail
 
         }
 
     }
-
 
 
 
@@ -112,7 +109,10 @@ class ViewDetail extends Component {
                                     <Body />
 
                                     <Right>
-                                        <Text note>{obj.number}</Text>
+                                        <Button transparent>
+                                            <Text note style={{ color: "white" }}>Details</Text>
+
+                                        </Button>
                                     </Right>
                                 </CardItem>
                             </Card>
@@ -141,12 +141,8 @@ class ViewDetail extends Component {
         let data = this.state.newData
 
         this.props.userCoords(data)
-        // this.props.navigation.navigate("ViewMemberMapRoute", this.props.dataUserDetail)
+        this.props.navigation.navigate("ViewMemberMapRoute")
     }
-
-
-
-
 
 
     render() {
@@ -154,14 +150,22 @@ class ViewDetail extends Component {
         return (
             <Container>
                 <Header>
-                    <Left />
+
+                    <Left>
+
+                        <Button transparent onPress={() => { this.props.navigation.navigate("GroupsRoute") }}>
+
+                            <Icon name="arrow-back" />
+
+                        </Button>
+
+
+                    </Left>
                     <Body>
                         <Title>Information</Title>
                     </Body>
                     <Right />
                 </Header>
-
-
 
                 <Container>
                     {
@@ -181,9 +185,7 @@ class ViewDetail extends Component {
 
 
                 <Button onPress={this.inviteMore} transparent>
-
                     <Text> Invite More  </Text>
-
                 </Button>
 
 

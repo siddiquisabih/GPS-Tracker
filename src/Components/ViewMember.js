@@ -5,10 +5,10 @@ import MapView from "react-native-maps"
 import MapMidware from "../Store/Middleware/MapMiddleware"
 import { connect } from "react-redux"
 
-
 function mapStateToProps(state) {
     return {
-        componentState: state,
+        locationData: state.MapReducer.userCoordsData,
+        isLocation: state.MapReducer.userCoords,
     }
 }
 
@@ -32,18 +32,56 @@ class ViewMemberMap extends Component {
         };
     }
 
-    componentWillMount() {
-        console.log(this.props)
-    }
-
-
     render() {
         return (
-
-
             <Container>
 
-                <Text>sabih sididqui</Text>
+                {console.log(this.props)}
+
+
+                <MapView
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: this.state.latitude,
+                        longitude: this.state.longitude,
+                        latitudeDelta: this.state.latitudeDelta,
+                        longitudeDelta: this.state.longitudeDelta,
+                    }}
+                    provider="google"
+                    mapType="standard"
+                    followsUserLocation
+                    showsUserLocation
+                    showsCompass
+                    showsMyLocationButton
+                    toolbarEnabled>
+
+                    {
+                        (this.props.isLocation) ?
+                            this.props.locationData.map((loc, ind) => {
+                                return (
+                                    <MapView.Marker
+                                        key={ind}
+                                        coordinate={{
+                                            latitude: loc.location.latitude,
+                                            longitude: loc.location.longitude
+                                        }}
+                                        title={loc.name}
+                                        description={loc.number}>
+                                    </MapView.Marker>
+                                )
+                            })
+
+                            : null
+
+                    }
+
+
+                </MapView>
+
+
+                {/* <Button onPress={this.click}  ><Text>Click</Text></Button> */}
+
+
 
 
             </Container>
@@ -73,7 +111,7 @@ const styles = {
 };
 
 //make this component available to the app
-export default ViewMemberMap;
+export default connect(mapStateToProps, null)(ViewMemberMap)
 
 
 
@@ -87,28 +125,4 @@ export default ViewMemberMap;
 
 
 
-/*
-<MapView
-style={styles.map}
-initialRegion={{
-    latitude: this.state.latitude,
-    longitude: this.state.longitude,
-    latitudeDelta: this.state.latitudeDelta,
-    longitudeDelta: this.state.longitudeDelta,
-}}
-provider="google"
-mapType="standard"
-followsUserLocation
-showsUserLocation
-showsCompass
-showsMyLocationButton
-toolbarEnabled>
-<MapView.Marker
-    coordinate={{
-        latitude: this.state.latitude,
-        longitude: this.state.longitude
-    }}
-    title="My Location">
-</MapView.Marker>
-</MapView>
-*/
+
