@@ -82,6 +82,7 @@ class ViewDetail extends Component {
 
 
 
+
     renderDetail() {
 
         if (this.state.loading) {
@@ -95,21 +96,21 @@ class ViewDetail extends Component {
                     this.state.newData.map((obj, ind) => {
                         console.log(obj, "ooooo")
                         return (
-                            <Card key={ind}
-                            >
+                            <Card key={ind}>
                                 {console.log(obj.name)}
-                                <CardItem style={{ backgroundColor: "#2E7D32" }}
+                                <CardItem style={{ backgroundColor: "#5E35B1" }}
                                 >
                                     <Left>
                                         <Text style={{ color: "white" }}>
                                             {obj.name}
                                         </Text>
                                     </Left>
-
                                     <Body />
 
                                     <Right>
-                                        <Button transparent>
+                                        <Button transparent onPress={() => {
+                                            this.props.navigation.navigate("UserDetailsRoute", obj)
+                                        }}>
                                             <Text note style={{ color: "white" }}>Details</Text>
 
                                         </Button>
@@ -149,6 +150,7 @@ class ViewDetail extends Component {
 
         return (
             <Container>
+
                 <Header>
 
                     <Left>
@@ -162,7 +164,7 @@ class ViewDetail extends Component {
 
                     </Left>
                     <Body>
-                        <Title>Information</Title>
+                        <Title>Members</Title>
                     </Body>
                     <Right />
                 </Header>
@@ -177,16 +179,23 @@ class ViewDetail extends Component {
 
 
 
-                <Button onPress={this.userLocationCoords} style={{ margin: 20 }} transparent>
+                <Button onPress={this.userLocationCoords} block style={{ margin: 20, backgroundColor: "#5E35B1" }} >
 
-                    <Text> View  </Text>
+                    <Text> View On Map  </Text>
 
                 </Button>
 
 
-                <Button onPress={this.inviteMore} transparent>
+                <Button onPress={this.inviteMore} block style={{ margin: 20, backgroundColor: "#5E35B1" }}>
                     <Text> Invite More  </Text>
                 </Button>
+
+
+
+
+
+
+
 
 
             </Container>

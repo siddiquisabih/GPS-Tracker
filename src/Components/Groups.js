@@ -106,7 +106,7 @@ class Groups extends Component {
 
                             <Card key={ind}
                             >
-                                <CardItem style={{ backgroundColor: "#2E7D32" }}
+                                <CardItem style={{ backgroundColor: "#5E35B1" }}
                                 >
                                     <Left>
                                         <Text style={{ color: "white" }}>
@@ -119,7 +119,7 @@ class Groups extends Component {
 
                                     <Right>
                                         <Button transparent onPress={() => { this.props.navigation.navigate("ViewDetailRoute", { joinKey: obj.JoiningCode, userDetail: obj }) }}>
-                                            <Text style={{ color: "orange" }}>View</Text></Button>
+                                            <Text style={{ color: "white" }}>View</Text></Button>
                                     </Right>
                                 </CardItem>
                             </Card>

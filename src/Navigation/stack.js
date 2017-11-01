@@ -8,6 +8,7 @@ import Signup from "../../src/Components/Authentication/Signup"
 import ViewDetail from "../../src/Components/ViewDetail"
 
 import ViewMemberMap from "../../src/Components/ViewMember"
+import UserDetails from "../../src/Components/userDetail"
 
 
 const MainRoute = StackNavigator({
@@ -36,6 +37,10 @@ const MainRoute = StackNavigator({
 
     ViewMemberMapRoute: {
         screen: ViewMemberMap
+    },
+
+    UserDetailsRoute: {
+        screen: UserDetails
     },
 
 
